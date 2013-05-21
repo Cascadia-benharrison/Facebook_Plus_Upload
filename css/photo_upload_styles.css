@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+/* CSS Styles for the Upload Image functionality on Social page */
+
+
+/* The Upload Photo to Facebook button */
+#uploadPhoto {
+	width: 83%;
+	margin: 10px auto;
+}
+
+/* div that holds a thumbnail of the image the user selected from their photo album */
+#img_upload_thumb {
+	width: 83%;
+}

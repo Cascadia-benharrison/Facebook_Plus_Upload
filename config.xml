@@ -7,7 +7,7 @@
 
     <!-- versionCode is optional and Android only -->
 
-    <icon src="icon.png" />
+    <!-- <icon src="icon.png" /> -->
     
     <name>Facebook_Plus_Upload</name>
 

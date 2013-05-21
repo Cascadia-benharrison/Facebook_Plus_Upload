@@ -6,25 +6,32 @@
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
 	
+	<!-- <script src="js/cordova.ios.js"></script> --> <!-- temp for testing -->
+	
+	<link rel="stylesheet" href="css/photo_upload_styles.css">
+	
 	<!-- Facebook Photo Upload Script -->
 	<script>
 		var pictureSource;   // picture source
-		var destinationType; // sets the format of returned value 
-		
-	    function init() {
-			document.addEventListener("deviceready", onDeviceReady, false);
-		}
-
-		function onDeviceReady() {
-			alert("device ready");
-		}
+	    var destinationType; // sets the format of returned value 
+	
+	    // Wait for PhoneGap to connect with the device
+	    document.addEventListener("deviceready",onDeviceReady,false);
+	
+	    // PhoneGap is ready to be used!
+	    function onDeviceReady() {
+	        pictureSource=navigator.camera.PictureSourceType;
+	        destinationType=navigator.camera.DestinationType;
+	    }
 	    
-		// On initilizing the page:
+		// On initilizing the Social page:
 		$(document).on("pageinit", function() {
+			console.log("Running pageinit for Social Page!");
 			// User taps #uploadPhoto button, get the picture source etc.
 			$("#uploadPhoto").bind("tap", function(){
 				var options = {
-					sourceType:Camera.PictureSourceType.PHOTOLIBRARY, // Get photo from user's photo library
+					quality: 50, // Try setting quality to 50
+					sourceType: Camera.PictureSourceType.PHOTOLIBRARY, // Get photo from user's photo library
 					destinationType : Camera.DestinationType.DATA_URL, // Return image as base64 encoded string
 					encodingType: Camera.EncodingType.JPEG, // Set image encoding to JPEG
 					MediaType: Camera.MediaType.PICTURE // Only allow picture uploads
@@ -35,63 +42,73 @@
 		
 		// Successfully got the image. Upload it to the server
 		function onCameraSuccess(imageURL) {
-			alert("in onCameraSuccess");
-			// Test - Just append the image URL to the body
-			$('body').append("OnCameraSuccess called. Image URL: " + imageURL);
+			// Set html inside #img_upload_thumb div to the selected image
+			$('#img_upload_thumb').html('<img>');
+			$('#img_upload_thumb').src(imageURL);
+			// Test - Append the image URL to the body
+			$('body').append('<p>Image URL: ' + imageURL + '</p>');
 		}
 		
 		// Called if something bad happens.
-	    function onFail(message) {
+	    function onError(message) {
 	      alert('Failed because: ' + message);
 	    }
 	</script>
 </head>
 	
-<body onload="init()">
+<body>
 
-<!--Javascript SDK-->
-<div id="fb-root"></div>
-<script>
-  window.fbAsyncInit = function() {
-    // init the FB JS SDK
-    FB.init({
-      appId      : '169052836589416',                        // App ID from the app dashboard
-      channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel file for x-domain comms
-      status     : true,                                 // Check Facebook Login status
-      xfbml      : true                                  // Look for social plugins on the page
-    });
-
-    // Additional initialization code such as adding Event Listeners goes here
-  };
-
-  // Load the SDK asynchronously
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/all.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
-
-
-<!--Like Facebook Page-->
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=169052836589416";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-<div class="fb-like" data-href="https://www.facebook.com/StateTuned" data-send="true" data-width="450" data-show-faces="false"></div>
-
-<!--Visit Facebook Page-->
-<a href="http://www.facebook.com/statetuned">Visit Page</a>
-
-<!-- Upload a Photo to the StateTuned Facebook -->
-<a href="#" id="uploadPhoto" data-role="button" data-icon="arrow-u">Upload Photo to Facebook</a>
+<!-- Page: Social -->
+<div id="social" data-role="page">
+	
+	<!--Javascript SDK-->
+	<div id="fb-root"></div>
+	<script>
+	  window.fbAsyncInit = function() {
+	    // init the FB JS SDK
+	    FB.init({
+	      appId      : '169052836589416',                        // App ID from the app dashboard
+	      channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel file for x-domain comms
+	      status     : true,                                 // Check Facebook Login status
+	      xfbml      : true                                  // Look for social plugins on the page
+	    });
+	
+	    // Additional initialization code such as adding Event Listeners goes here
+	  };
+	
+	  // Load the SDK asynchronously
+	  (function(d, s, id){
+	     var js, fjs = d.getElementsByTagName(s)[0];
+	     if (d.getElementById(id)) {return;}
+	     js = d.createElement(s); js.id = id;
+	     js.src = "//connect.facebook.net/en_US/all.js";
+	     fjs.parentNode.insertBefore(js, fjs);
+	   }(document, 'script', 'facebook-jssdk'));
+	</script>
+	
+	
+	<!--Like Facebook Page-->
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=169052836589416";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	
+	<div class="fb-like" data-href="https://www.facebook.com/StateTuned" data-send="true" data-width="450" data-show-faces="false"></div>
+	
+	<!--Visit Facebook Page-->
+	<a href="http://www.facebook.com/statetuned">Visit Page</a>
+	
+	<!-- Upload a Photo to the StateTuned Facebook -->
+	<div id="img_upload_thumb">
+		<!-- Thumbnail of image to upload will insert here -->
+	</div>
+	<a href="#" id="uploadPhoto" data-role="button" data-icon="arrow-u">Upload Photo to Facebook</a>
+		
+	</div> <!-- end Social Page -->
 
 </body>
 </html>
