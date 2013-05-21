@@ -6,8 +6,6 @@
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
 	
-	<!-- <script src="js/cordova.ios.js"></script> --> <!-- temp for testing -->
-	
 	<link rel="stylesheet" href="css/photo_upload_styles.css">
 	
 	<!-- Facebook Photo Upload Script -->
@@ -20,13 +18,13 @@
 	
 	    // PhoneGap is ready to be used!
 	    function onDeviceReady() {
+	    	alert("device ready");
 	        pictureSource=navigator.camera.PictureSourceType;
 	        destinationType=navigator.camera.DestinationType;
 	    }
 	    
 		// On initilizing the Social page:
 		$(document).on("pageinit", function() {
-			console.log("Running pageinit for Social Page!");
 			// User taps #uploadPhoto button, get the picture source etc.
 			$("#uploadPhoto").bind("tap", function(){
 				var options = {
@@ -42,6 +40,7 @@
 		
 		// Successfully got the image. Upload it to the server
 		function onCameraSuccess(imageURL) {
+			alert("running onCameraSuccess function");
 			// Set html inside #img_upload_thumb div to the selected image
 			$('#img_upload_thumb').html('<img>');
 			$('#img_upload_thumb').src(imageURL);
