@@ -13,12 +13,13 @@
 #img_upload_thumb {
 	margin: 20px auto 10px;
 	width: 50%;
+	max-width: 400px;
+	max-height: 400px;
 }
 
 /* The image thumbnail */
 #img_upload_thumb > img {
 	width: 100%;
-	height: 100%;
 	box-shadow: 0 0 15px rgba(0,0,0,.8);
 }
 
