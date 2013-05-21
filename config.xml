@@ -18,5 +18,11 @@
     <author href="www.cascadia.edu">
         Ben, Kuor, Casey, Jae
     </author>
+    
+    <!-- Permissions for Photo Upload -->
+    <plugin name="Camera" value="org.apache.cordova.CameraLauncher" /> <!-- Android -->
+    <plugin name="Camera" value="CDVCamera" /> <!-- IOS -->
+    
+    <!-- Note: need to add <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> to AndroidManifest -->
 
 </widget>
