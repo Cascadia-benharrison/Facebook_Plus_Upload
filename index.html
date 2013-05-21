@@ -1,5 +1,52 @@
 <!DOCTYPE html>
 <html>
+	
+<head>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+	
+	<!-- Facebook Photo Upload Script -->
+	<script>
+		var pictureSource;   // picture source
+		var destinationType; // sets the format of returned value 
+		
+	    // Wait for PhoneGap to connect with the device
+	    document.addEventListener("deviceready",onDeviceReady,false);
+		
+	    // PhoneGap is ready to be used!
+	    function onDeviceReady() {
+	        pictureSource=navigator.camera.PictureSourceType;
+	        destinationType=navigator.camera.DestinationType;
+	    }
+	    
+		// On initilizing the page:
+		$(document).on("pageinit", function() {
+			// User taps #uploadPhoto button, get the picture source etc.
+			$("#uploadPhoto").bind("tap", function(){
+				var options = {
+					sourceType:Camera.PictureSourceType.PHOTOLIBRARY, // Get photo from user's photo library
+					destinationType : Camera.DestinationType.DATA_URL, // Return image as base64 encoded string
+					encodingType: Camera.EncodingType.JPEG, // Set image encoding to JPEG
+					MediaType: Camera.MediaType.PICTURE // Only allow picture uploads
+				};
+				navigator.camera.getPicture(onCameraSuccess, onError, options);
+			});
+		});
+		
+		// Successfully got the image. Upload it to the server
+		function onCameraSuccess(imageURL) {
+			// Test - Just append the image URL to the body
+			$('body').append("OnCameraSuccess called. Image URL: " + imageURL);
+		}
+		
+		// Called if something bad happens.
+	    function onFail(message) {
+	      alert('Failed because: ' + message);
+	    }
+	</script>
+</head>
+	
 <body>
 
 <!--Javascript SDK-->
@@ -42,6 +89,9 @@
 
 <!--Visit Facebook Page-->
 <a href="http://www.facebook.com/statetuned">Visit Page</a>
+
+<!-- Upload a Photo to the StateTuned Facebook -->
+<a href="#" id="uploadPhoto" data-role="button" data-icon="arrow-u">Upload Photo to Facebook</a>
 
 </body>
 </html>
