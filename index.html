@@ -61,7 +61,7 @@
 			$('#photo_control_group').show();
 			// Set html inside #img_upload_thumb div to the selected image to show the image thumbnail
 			$('#img_upload_thumb').html('<img>');
-			$('#img_upload_thumb > img').attr('src', imageURL); // set the thumbnail img src to imageURL
+			$('#img_upload_thumb > img').attr('src', 'data:image/jpeg;base64,' + imageURL); // set the thumbnail img src to imageURL
 			// **********Test*************** - Append the image URL to the body
 			$('#social').append('<p>Image URL: ' + imageURL + '</p>');
 		}
