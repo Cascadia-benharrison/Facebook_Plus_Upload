@@ -4,12 +4,27 @@
 
 
 /* The Upload Photo to Facebook button */
-#uploadPhoto {
+#upload_photo {
 	width: 83%;
 	margin: 10px auto;
 }
 
 /* div that holds a thumbnail of the image the user selected from their photo album */
 #img_upload_thumb {
-	width: 83%;
+	margin: 20px auto 10px;
+	width: 50%;
+}
+
+/* The image thumbnail */
+#img_upload_thumb > img {
+	width: 100%;
+	height: 100%;
+	box-shadow: 0 0 15px rgba(0,0,0,.8);
+}
+
+/* Controls for confirming/browing-again/canceling upload */
+/* These are hidden until the user gets an image from their album */
+#photo_control_group {
+	display: none;
+	text-align: center;
 }
