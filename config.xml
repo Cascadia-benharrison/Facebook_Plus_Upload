@@ -19,9 +19,8 @@
         Ben, Kuor, Casey, Jae
     </author>
     
-    <!-- Permissions for Photo Upload -->
-    <plugin name="Camera" value="org.apache.cordova.CameraLauncher" /> <!-- Android -->
-    <plugin name="Camera" value="CDVCamera" /> <!-- IOS -->
+    <!-- Permissions for accessing camera -->
+    <feature name="http://api.phonegap.com/1.0/camera"/>
     
     <!-- Note: need to add <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> to AndroidManifest -->
 
