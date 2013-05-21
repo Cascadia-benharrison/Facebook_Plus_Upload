@@ -11,14 +11,13 @@
 		var pictureSource;   // picture source
 		var destinationType; // sets the format of returned value 
 		
-	    // Wait for PhoneGap to connect with the device
-	    document.addEventListener("deviceready",onDeviceReady,false);
-		
-	    // PhoneGap is ready to be used!
-	    function onDeviceReady() {
-	        pictureSource=navigator.camera.PictureSourceType;
-	        destinationType=navigator.camera.DestinationType;
-	    }
+	    function init() {
+			document.addEventListener("deviceready", onDeviceReady, false);
+		}
+
+		function onDeviceReady() {
+			alert("device ready");
+		}
 	    
 		// On initilizing the page:
 		$(document).on("pageinit", function() {
@@ -36,6 +35,7 @@
 		
 		// Successfully got the image. Upload it to the server
 		function onCameraSuccess(imageURL) {
+			alert("in onCameraSuccess");
 			// Test - Just append the image URL to the body
 			$('body').append("OnCameraSuccess called. Image URL: " + imageURL);
 		}
@@ -47,7 +47,7 @@
 	</script>
 </head>
 	
-<body>
+<body onload="init()">
 
 <!--Javascript SDK-->
 <div id="fb-root"></div>
