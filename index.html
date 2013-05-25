@@ -6,7 +6,11 @@
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
 	<script src="phonegap.js"></script>
-	<!-- <script src="js/cordova.ios.js"></script> --> <!-- for testing in ripple -->
+	<!-- <script src="js/cordova.ios.js"></script> --> <!-- Phonegap script for testing in ripple -->
+	
+	<!-- FacebookConnect Plugin Scripts -->
+	<script src="cdv-plugin-fb-connect.js"></script>
+	<script src="facebook-js-sdk.js"></script>
 	
 	<link rel="stylesheet" href="css/photo_upload_styles.css">
 	
@@ -62,8 +66,6 @@
 			// Set html inside #img_upload_thumb div to the selected image to show the image thumbnail
 			$('#img_upload_thumb').html('<img>');
 			$('#img_upload_thumb > img').attr('src', 'data:image/jpeg;base64,' + imageURL); // set the thumbnail img src to imageURL
-			// **********Test*************** - Append the image URL to the body
-			$('#social').append('<p>Image URL: ' + imageURL + '</p>');
 		}
 		
 		// Called if something bad happens.
@@ -84,7 +86,7 @@
 	  window.fbAsyncInit = function() {
 	    // init the FB JS SDK
 	    FB.init({
-	      appId      : '169052836589416',                        // App ID from the app dashboard
+	      appId      : '169052836589416',                    // App ID from the app dashboard
 	      channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel file for x-domain comms
 	      status     : true,                                 // Check Facebook Login status
 	      xfbml      : true                                  // Look for social plugins on the page
