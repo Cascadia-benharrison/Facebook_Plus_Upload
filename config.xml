@@ -21,6 +21,9 @@
     <!-- Permissions for accessing camera (PhoneGap Build handles this) -->
     <feature name="http://api.phonegap.com/1.0/camera"/>
     
+    <!-- Version was 2.5.0 when first built, now need to specify the newest version of PhoneGap -->
+    <preference name="phonegap-version" value="2.7.0" />
+    
     <!-- FacebookConnect Plugin -->
     <gap:plugin name="FacebookConnect">
 		<param name="APP_ID" value="169052836589416" />
